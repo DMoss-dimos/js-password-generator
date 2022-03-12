@@ -16,7 +16,7 @@ const randomFunctionObject = {
   symbol: randomSymbol,
 };
 
-// button event to password cick
+// generate event to password cick
 generateEL.addEventListener("click", () => {
   const length = +lengthEl.value;
   const hasLower = lowerCaseEl.Checked;
@@ -33,10 +33,66 @@ generateEL.addEventListener("click", () => {
   );
 });
 
+// copy to clipboard
+clipBoardEl.addEventListener('click', () =>{
+    const textarea = document.createElement('textarea');
+    const password = el.innerText;
+
+    if(!password){
+        return;
+    }
+    
+    textarea.value = password;
+    document.body.appendChild(textarea);
+    textarea.select();
+        document.execCommand("copy");// use api clipboard with navagator
+        textarea.remove();
+        alert("Password copy to clipboard");
+    
+})
 //addaventlistener is not working. I have to figure it out
 // generateEL.addEventListener("click", () => {
 //   const length = lengthEl.value;
 // });
+
+//generate password
+//steps
+// initialize password variable
+// filter out unchecked types
+// loop over length call generator function for each type
+// add final password to the passwaord variable and return
+function generatePassword(lower, upper, number, symbol, length) {
+  let generatePassword = "";
+
+  const typeCount = lower + upper + number + symbol;
+
+  console.log("typeCount: ", typeCount);
+
+  const typeArr = [{ lower }, { upper }, { number }, { symbol }].filter;
+  (item) => Objects.values(item)[0];
+
+  console.log("typeArr: ", typeArr);
+
+  if (typeCount === 0) {
+    return "";
+  }
+
+  for (let i = 0; i < length; i += typeCount) {
+    typesArr.forEach((type) => {
+      const functionName = Object.keys(type)[0];
+      console.log("functionName: ", function)
+
+    //   generatePassword += randomFunctionObject[functionName]();
+      generatedPassword += randomFunctionObject[functionName]();
+    });
+  }
+}
+
+// console.log(generatedPassword.slice(1, length));
+return completePassword  = generatedPassword.slice(1, length);
+ 
+
+
 
 // generator for functions
 //random lowercase function
